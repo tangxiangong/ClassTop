@@ -7,10 +7,10 @@ from scipy.stats import levy_stable
 
 
 class StableProcess(object):
-    def __init__(self, t_len, alpha, tau=1e-2):
-        assert 0 < alpha <= 2, "Argument Error: 0<alpha<=2"
+    def __init__(self, t_len, stable_index, tau=1e-2):
+        assert 0 < stable_index <= 2, "Argument Error: 0<alpha<=2"
         self._T = t_len
-        self._alpha = alpha
+        self._alpha = stable_index
         self._tau = tau
         self._t = None
         self._x = None
@@ -41,7 +41,7 @@ class StableProcess(object):
 
 
 if __name__ == "__main__":
-    alpha = 2.4
+    alpha = 1.5
     sp = StableProcess(10, alpha)
     # print(sp)
     # sp.plot()
