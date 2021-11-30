@@ -15,9 +15,9 @@ class StableProcess(object):
         self._t = None
         self._x = None
         self._n = 0
-        self.simulate()
+        self._simulate()
 
-    def simulate(self):
+    def _simulate(self):
         n = int(self._T / self._tau)
         self._n = n + 1
         self._t = np.linspace(0, self._T, self._n)
