@@ -43,6 +43,3 @@ class StableProcess(object):
 if __name__ == "__main__":
     alpha = 1.5
     sp = StableProcess(10, alpha)
-    # print(sp)
-    # sp.plot()
-    # print(len(sp))
