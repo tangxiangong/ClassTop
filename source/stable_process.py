@@ -7,11 +7,12 @@ from scipy.stats import levy_stable
 
 
 class StableProcess(object):
-    def __init__(self, t_len, stable_index, tau=1e-2):
+    def __init__(self, t_len, stable_index, initial_position=0, tau=1e-2):
         assert 0 < stable_index <= 2, "Argument Error: 0<alpha<=2"
         self._T = t_len
         self._alpha = stable_index
         self._tau = tau
+        self._x0 = initial_position
         self._t = None
         self._x = None
         self._n = 0
@@ -23,7 +24,7 @@ class StableProcess(object):
         self._t = np.linspace(0, self._T, self._n)
         xi = levy_stable.rvs(self._alpha, 0, size=n)
         xi = np.insert(xi, 0, 0)
-        self._x = np.cumsum(xi * self._tau ** (1 / self._alpha))
+        self._x = np.cumsum(xi * self._tau ** (1 / self._alpha))+self._x0
 
     def plot(self):
         plt.figure()
@@ -42,5 +43,5 @@ class StableProcess(object):
 
 if __name__ == "__main__":
     alpha = 1.5
-    sp = StableProcess(100, alpha)
+    sp = StableProcess(100, alpha, initial_position=1)
     sp.plot()
