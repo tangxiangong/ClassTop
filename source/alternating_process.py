@@ -49,25 +49,22 @@ class AlternatingProcess(Trajectory):
                 bm = StableProcess(temp_time, 2, cls="symmetric", initial_position=current_x, tau=temp_time*1e-2)
                 n += len(bm)-1
                 t, x = bm.get()
-                t = total_time + t[1:]
-                x = current_x + x[1:]
-                self._t = np.append(self._t, t)
-                self._x = np.append(self._x, x)
+                t = total_time + t
+                self._t = np.append(self._t, t[1:])
+                self._x = np.append(self._x, x[1:])
                 self._n = n
                 break
             else:
                 bm = StableProcess(tau_m, 2, cls="symmetric", initial_position=current_x, tau=tau_m*1e-2)
                 n += len(bm) - 1
                 t, x = bm.get()
-                t = total_time + t[1:]
-                x = current_x + x[1:]
-                self._t = np.append(self._t, t)
-                self._x = np.append(self._x, x)
+                t = total_time + t
+                self._t = np.append(self._t, t[1:])
+                self._x = np.append(self._x, x[1:])
                 total_time += tau_m
                 current_x = self._x[-1]
 
 
 if __name__ == "__main__":
-    m = AlternatingProcess(100, 0.4, 0.3)
+    m = AlternatingProcess(10, 0.4, 0.3)
     m.plot()
-    # t,x = m.get()
