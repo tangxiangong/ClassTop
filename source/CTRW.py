@@ -3,19 +3,18 @@
 # @Time : 2021/12/1 13:27
 import numpy as np
 from numpy import random
-from rnd import stable_rnd, skewed_stable_rnd
 import matplotlib.pyplot as plt
+from trajectory import Trajectory
+from rnd import stable_rnd, skewed_stable_rnd
 
 
-class CTRW(object):
+class CTRW(Trajectory):
     def __init__(self, t_len, ind_waiting, ind_jump, init_position=0):
+        super(Trajectory, self).__init__()
         self._T = t_len
         self._alpha = ind_jump
         self._beta = ind_waiting
         self._x0 = init_position
-        self._t = None
-        self._x = None
-        self._n = 0
         self._simulate()
 
     def _simulate(self):
@@ -45,15 +44,6 @@ class CTRW(object):
         plt.figure()
         plt.step(self._t, self._x)
         plt.show()
-
-    def __getitem__(self, item):
-        return self._t[item], self._x[item]
-
-    def __len__(self):
-        return self._n
-
-    def get(self):
-        return self._t, self._x
 
 
 if __name__ == "__main__":

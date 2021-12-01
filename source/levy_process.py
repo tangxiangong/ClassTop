@@ -2,13 +2,15 @@
 # -*- encoding: utf-8 -*-
 # @Time : 2021/11/29 21:22
 import numpy as np
+from trajectory import Trajectory
 import matplotlib.pyplot as plt
 from rnd import skewed_stable_rnd
 from scipy.stats import levy_stable
 
 
-class StableProcess(object):
+class StableProcess(Trajectory):
     def __init__(self, t_len, stable_index,  cls="symmetric", initial_position=0, tau=1e-2):
+        super(Trajectory, self).__init__()
         assert cls in ["subordinator", "symmetric"]
         if cls == "symmetric":
             assert 0 < stable_index <= 2, "Argument Error: 0<alpha<=2"
@@ -20,9 +22,6 @@ class StableProcess(object):
         self._T = t_len
         self._alpha = stable_index
         self._tau = tau
-        self._t = None
-        self._x = None
-        self._n = 0
         self._simulate()
 
     def _simulate(self):
@@ -36,19 +35,13 @@ class StableProcess(object):
         xi = np.insert(xi, 0, 0)
         self._x = np.cumsum(xi * self._tau ** (1 / self._alpha))+self._x0
 
-    def plot(self):
-        plt.figure()
-        plt.plot(self._t, self._x)
-        plt.show()
 
-    def __getitem__(self, item):
-        return self._t[item], self._x[item]
+class PoissonProcess(Trajectory):
+    def __init__(self, t_len, intensity):
+        super(Trajectory, self).__init__()
+        self._T = t_len
+        self._lambda = intensity
 
-    def __len__(self):
-        return self._n
-
-    def get(self):
-        return self._t, self._x
 
 
 if __name__ == "__main__":
