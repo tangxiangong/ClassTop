@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 # @Time : 2021/11/29 21:22
 import numpy as np
+from numpy import random
 from trajectory import Trajectory
 import matplotlib.pyplot as plt
 from rnd import skewed_stable_rnd
@@ -41,11 +42,37 @@ class PoissonProcess(Trajectory):
         super(Trajectory, self).__init__()
         self._T = t_len
         self._lambda = intensity
+        self._simulate()
 
+    def _simulate(self):
+        self._t = np.zeros(1)
+        self._x = np.array([0])
+        total_time = 0
+        n = 1
+        while True:
+            tau = random.exponential(1/self._lambda)
+            if total_time + tau > self._T:
+                self._t = np.append(self._t, self._T)
+                self._x = np.append(self._x, self._x[-1])
+                self._n = n + 1
+                break
+            else:
+                total_time += tau
+                self._t = np.append(self._t, total_time)
+                self._x = np.append(self._x, self._x[-1] + 1)
+                n += 1
+
+    def plot(self):
+        plt.figure()
+        plt.step(self._t, self._x)
+        plt.show()
 
 
 if __name__ == "__main__":
-    sp1 = StableProcess(100, 1.4, "symmetric", initial_position=1)
-    sp2 = StableProcess(10, 0.7, "subordinator")
-    sp1.plot()
-    sp2.plot()
+    # sp1 = StableProcess(100, 1.4, "symmetric", initial_position=1)
+    # sp2 = StableProcess(10, 0.7, "subordinator")
+    # print(sp1[3])
+    poisson = PoissonProcess(10, 1)
+    poisson.plot()
+    # sp1.plot()
+    # sp2.plot()
