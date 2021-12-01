@@ -48,8 +48,3 @@ class CTRW(Trajectory):
 
 if __name__ == "__main__":
     m = CTRW(100, 1, 2)
-    print(len(m))
-    t, x = m.get()
-    print(len(x))
-    print(len(t))
-    m.plot()
