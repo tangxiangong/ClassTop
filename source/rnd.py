@@ -5,6 +5,16 @@ import numpy as np
 from numpy import random
 
 
+def n_rand(p):
+    p = np.array(p)
+    assert sum(p) == 1
+    n = len(p)
+    q = np.cumsum(p)
+    index = np.arange(0, n)
+    xi = random.random()
+    return index[q >= xi][0]
+
+
 def stable_rnd(alpha, size=1):
     assert 0 < alpha <= 2
     v = random.uniform(-np.pi / 2, np.pi / 2, size=size)
@@ -38,6 +48,9 @@ def power_rnd(alpha, size=1):
 
 
 if __name__ == "__main__":
+    print("Hello world")
     # print(stable_rnd(2))
     # print(skewed_stable_rnd(0.5, 10))
-    print(power_rnd(0.4, 4))
+    # print(power_rnd(0.4, 4))
+    # p = [1/5, 1/5, 2/5, 1/5]
+    # print(n_rand(p))
