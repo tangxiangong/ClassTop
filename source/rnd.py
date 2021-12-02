@@ -6,7 +6,8 @@ from numpy import random
 
 
 def n_rand(p):
-    p = np.array(p)
+    if type(p) is not np.ndarray:
+        p = np.array(p)
     assert sum(p) == 1
     n = len(p)
     q = np.cumsum(p)
