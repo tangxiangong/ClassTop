@@ -69,10 +69,11 @@ class PoissonProcess(Trajectory):
 
 
 if __name__ == "__main__":
-    # sp1 = StableProcess(100, 1.4, "symmetric", initial_position=1)
-    # sp2 = StableProcess(10, 0.7, "subordinator")
-    # print(sp1[3])
-    poisson = PoissonProcess(10, 1)
-    poisson.plot()
-    # sp1.plot()
-    # sp2.plot()
+    # sp = StableProcess(100, 2, "symmetric")
+    sp = PoissonProcess(100, 1)
+    t, x = sp.get()
+    fig = plt.figure()
+    plt.step(t, x)
+    plt.xlabel("t")
+    plt.ylabel("N")
+    fig.savefig("poisson.eps")

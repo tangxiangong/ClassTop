@@ -47,4 +47,10 @@ class CTRW(Trajectory):
 
 
 if __name__ == "__main__":
-    m = CTRW(100, 1, 2)
+    m1 = CTRW(100, 0.7, 1.5)
+    t1, x1 = m1.get()
+    fig = plt.figure(1)
+    plt.step(t1, x1)
+    plt.xlabel("t")
+    plt.ylabel("x")
+    fig.savefig("ctrw4.eps")

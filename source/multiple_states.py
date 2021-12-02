@@ -55,5 +55,9 @@ if __name__ == "__main__":
          [0.2, 0.5, 0.3]]
     b = [0.5, 0.43, 0.6]
     model = FCP(100, b, M, a)
-    model.plot()
-
+    t,x = model.get()
+    fig = plt.figure()
+    plt.step(t, x)
+    plt.xlabel("t")
+    plt.ylabel("x")
+    fig.savefig("fcp.eps")
