@@ -1,4 +1,10 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 # @Time : 2021/12/1 18:39
-__all__ = ["alternating_process", "CTRW", "levy_process", "rnd", "trajectory"]
+from .alternating_process import *
+from .CTRW import *
+from .FBM import *
+from .levy_process import *
+from .multiple_states import *
+from .rnd import *
+from .trajectory import *
