@@ -31,8 +31,10 @@ function varargout = levywalk(t_len, alpha, v, x0)
        end
     end
     
-    figure()
-    plot(t, x)
+    if nargout == 0
+        figure()
+        plot(t, x)
+    end
     
     if nargout == 2
         varargout{1} = t;

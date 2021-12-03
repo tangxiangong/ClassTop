@@ -40,7 +40,7 @@ function varargout = alternating(t_len, lw, bm, v0, x0)
            x(n+1:n+l-1) = x_temp(2:end);
            break
        else
-           [t_temp, x_temp] = levystable(tau_m, 2, 0, ...
+           [t_temp, x_temp] = levystable(tau_m, 2, ...
                current_position, tau_m*1e-2);
            l = length(t_temp);
            t(n+1:n+l-1) = total_time + t_temp(2:end);
@@ -50,8 +50,11 @@ function varargout = alternating(t_len, lw, bm, v0, x0)
            n = n + l - 1;
        end
     end
-    figure()
-    plot(t, x)
+    
+    if nargout == 0
+        figure()
+        plot(t, x)
+    end
            
     if nargout == 2
        varargout{1} = t;

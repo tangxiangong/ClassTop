@@ -28,8 +28,12 @@ function varargout = mulfcp(t_len, v_w, tm, init, x0)
            
         end
     end
-    figure()
-    stairs(t, x)
+    
+    if nargout == 0
+        figure()
+        stairs(t, x)
+    end
+    
     if nargout == 2
         varargout{1} = t;
         varargout{2} = x;

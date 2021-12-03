@@ -23,8 +23,10 @@ function varargout = poisson(t_len, lambda)
             x(n+1) = current_position;
         end
     end
-    figure()
-    stairs(t, x)
+    if nargout == 0
+        figure()
+        stairs(t, x)
+    end
     if nargout == 2
         varargout{1} = t;
         varargout{2} = x;

@@ -27,32 +27,25 @@ function varargout = Langevin(T, f, g, alpha, x0, tau)
         x(k+1)=x(k)+f(x(k),t(k))*tau+g(x(k),t(k))*tau^(1/alpha)*alpha_rand(k);
     end
     
-    temp = (1:N)';
-    jump = temp(idx);
-    L = length(jump);
-    figure()
-    if L == 0
-        plot(t, x)
-    else
-        plot(t(1:jump(1)), x(1:jump(1)), 'b-')
-        hold on
-        for k=1:L-1
-            plot(t(jump(k)+1:jump(k+1)), x(jump(k)+1:jump(k+1)), 'b-');
+    if nargout == 0
+        temp = (1:N)';
+        jump = temp(idx);
+        L = length(jump);
+        figure()
+        if L == 0
+            plot(t, x)
+        else
+            plot(t(1:jump(1)), x(1:jump(1)), 'b-')
             hold on
+            for k=1:L-1
+                plot(t(jump(k)+1:jump(k+1)), x(jump(k)+1:jump(k+1)), 'b-');
+                hold on
+            end
+            plot(t(jump(end)+1:end), x(jump(end)+1:end), 'b-')
         end
-        plot(t(jump(end)+1:end), x(jump(end)+1:end), 'b-')
+        xlabel('t')
+        ylabel('x')
     end
-%     hold on
-%     for k=1:L
-%         plot(t(jump(k)), x(jump(k)), 'r.')
-%         hold on
-%     end
-    
-    xlabel('t')
-    ylabel('x')
-    str = "Langevin equation dX(t)=f(X(t),t)dt+g(X(t),t)dL_{\alpha}(t)"+ ...
-          ", \alpha="+num2str(alpha);
-    title(str)
     
     if nargout == 2
         varargout{1} = t;

@@ -34,8 +34,10 @@ function varargout = CTRW(t_len, alpha, beta, x0)
         end
     end
     
-    figure()
-    stairs(t, x)
+    if nargout == 0
+        figure()
+        stairs(t, x)
+    end
     
     if nargout == 2
         varargout{1} = t;

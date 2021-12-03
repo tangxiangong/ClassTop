@@ -6,8 +6,10 @@ function varargout = stablesubordinator(t_len, alpha, tau)
     n = length(t);
     increments = rand1stable(alpha, n-1)';
     x = cumsum([0, increments])*(tau)^(1/alpha);
-    figure()
-    plot(t,x)
+    if nargout == 0
+        figure()
+        plot(t,x)
+    end
     if nargout == 2
         varargout{1} = t;
         varargout{2} = x;
