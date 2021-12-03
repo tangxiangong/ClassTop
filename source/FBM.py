@@ -13,10 +13,17 @@ def fbm(t_len, hurst):
     return t, x
 
 
-if __name__ == "__main__":
-    t, x = fbm(100, 0.75)
-    fig = plt.figure()
-    plt.plot(t, x)
-    plt.xlabel("t")
-    plt.ylabel("x")
-    fig.savefig("fbm2.eps")
+# if __name__ == "__main__":
+#     t1, x1 = fbm(100, 0.75)
+#     fig1 = plt.figure(1)
+#     plt.plot(t1, x1)
+#     plt.xlabel("t")
+#     plt.ylabel("x")
+#     fig1.savefig("../figures/fbm1.png")
+#
+#     t2, x2 = fbm(100, 0.45)
+#     fig2 = plt.figure(2)
+#     plt.plot(t2, x2)
+#     plt.xlabel("t")
+#     plt.ylabel("x")
+#     fig2.savefig("../figures/fbm2.png")

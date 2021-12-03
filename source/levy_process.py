@@ -71,11 +71,34 @@ class PoissonProcess(Trajectory):
 
 
 if __name__ == "__main__":
-    # sp = StableProcess(100, 2, "symmetric")
+    bm = StableProcess(100, 2, "symmetric")
+    t1, x1 = bm.get()
+    fig1 = plt.figure(1)
+    plt.plot(t1, x1)
+    plt.xlabel("t")
+    plt.ylabel("x")
+    fig1.savefig("../figures/bm.png")
+
+    levy = StableProcess(100, 1.5, "symmetric")
+    t2, x2 = levy.get()
+    fig2 = plt.figure(2)
+    plt.plot(t2, x2)
+    plt.xlabel("t")
+    plt.ylabel("x")
+    fig2.savefig("../figures/levy.png")
+
+    s = StableProcess(100, 0.7, "subordinator")
+    t3, x3 = s.get()
+    fig3 = plt.figure(3)
+    plt.plot(t3, x3)
+    plt.xlabel("t")
+    plt.ylabel("S")
+    fig3.savefig("../figures/subordinator.png")
+
     sp = PoissonProcess(100, 1)
     t, x = sp.get()
     fig = plt.figure()
     plt.step(t, x)
     plt.xlabel("t")
     plt.ylabel("N")
-    # fig.savefig("poisson.eps")
+    fig.savefig("../figures/poisson.png")
