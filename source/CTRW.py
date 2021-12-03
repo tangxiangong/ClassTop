@@ -25,14 +25,15 @@ class CTRW(Trajectory):
         self._t = np.zeros(1)
         self._x = np.array([self._x0])
         total_time = 0
-        current_position =  self._x0
+        current_position = self._x0
         n = 1
         while True:
+            n += 1
             tau = waiting_time(self._beta)
             if total_time + tau > self._T:
                 self._t = np.append(self._t, self._T)
                 self._x = np.append(self._x, current_position)
-                self._n = n + 1
+                self._n = n
                 break
             else:
                 xi = stable_rnd(self._alpha)
@@ -40,7 +41,6 @@ class CTRW(Trajectory):
                 current_position += xi
                 self._t = np.append(self._t, total_time)
                 self._x = np.append(self._x, current_position)
-                n += 1
 
     def plot(self):
         plt.figure()

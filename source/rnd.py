@@ -48,10 +48,16 @@ def power_rnd(alpha, size=1):
     return x
 
 
-if __name__ == "__main__":
-    print("Hello world")
-    # print(stable_rnd(2))
-    # print(skewed_stable_rnd(0.5, 10))
-    # print(power_rnd(0.4, 4))
-    # p = [1/5, 1/5, 2/5, 1/5]
-    # print(n_rand(p))
+def randw(alpha):
+    if alpha == 1:
+        return random.exponential(1)
+    else:
+        return power_rnd(alpha)
+
+# if __name__ == "__main__":
+#     print("Hello world")
+#     # print(stable_rnd(2))
+#     # print(skewed_stable_rnd(0.5, 10))
+#     # print(power_rnd(0.4, 4))
+#     # p = [1/5, 1/5, 2/5, 1/5]
+#     # print(n_rand(p))

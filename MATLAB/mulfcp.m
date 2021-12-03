@@ -12,20 +12,21 @@ function varargout = mulfcp(t_len, v_w, tm, init, x0)
     i = randp(init);
     current_state = i;
     while true
-       tau = rand1stable(v_w(i));
-       if total_time + tau > t_len
-           t(n+1) = t_len;
-           x(n+1) = current_position;
-           break
-       else
-           total_time = total_time + tau;
-           current_position = current_position + randn();
-           t(n+1) = total_time;
-           x(n+1) = current_position;
-           next_state = randp(tm(current_state,:));
-           current_state = next_state;
-           n = n+1;
-       end
+        n = n + 1;
+        tau = rand1stable(v_w(i));
+        if total_time + tau > t_len
+            t(n) = t_len;
+            x(n) = current_position;
+            break
+        else
+            total_time = total_time + tau;
+            current_position = current_position + randn();
+            t(n) = total_time;
+            x(n) = current_position;
+            next_state = randp(tm(current_state,:));
+            current_state = next_state;
+           
+        end
     end
     figure()
     stairs(t, x)

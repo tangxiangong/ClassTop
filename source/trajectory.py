@@ -5,11 +5,13 @@ import matplotlib.pyplot as plt
 
 
 class Trajectory(object):
-    def __init__(self, t_len):
-        self._T = t_len
+    def __init__(self):
         self._t = None
         self._x = None
         self._n = 0
+
+    def _simulate(self):
+        pass
 
     def plot(self):
         plt.figure()

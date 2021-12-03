@@ -5,14 +5,7 @@ import numpy as np
 from numpy import random
 import matplotlib.pyplot as plt
 from trajectory import Trajectory
-from rnd import n_rand, skewed_stable_rnd, power_rnd
-
-
-def rnd(alpha):
-    if alpha == 1:
-        return random.exponential(1)
-    else:
-        return power_rnd(alpha)
+from rnd import n_rand, skewed_stable_rnd, randw
 
 
 class FCP(Trajectory):
@@ -77,7 +70,7 @@ class LW(Trajectory):
         init = n_rand(self._I)
         current_state = init
         while True:
-            tau = rnd(self._alpha[current_state])
+            tau = randw(self._alpha[current_state])
             v0 = self._v[current_state]
             if random.random() < 0.5:
                 d = -1
@@ -98,11 +91,6 @@ class LW(Trajectory):
                 n += 1
                 next_state = n_rand(self._M[current_state])
                 current_state = next_state
-
-    def plot(self):
-        plt.figure()
-        plt.plot(self._t, self._x)
-        plt.show()
 
 
 # if __name__ == "__main__":

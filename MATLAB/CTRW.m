@@ -13,24 +13,24 @@ function varargout = CTRW(t_len, alpha, beta, x0)
         
     total_time = 0;
     current_position = x0;
-    
+    n = 1;
     t = zeros;
     x = zeros;
     t(1) = 0;
     x(1) = x0;
     
     while true
+        n = n + 1;
         tau = rand_wait(alpha);
         if total_time + tau > t_len
-            t(n+1) = t_len;
-            x(n+1) = current_position;
+            t(n) = t_len;
+            x(n) = current_position;
             break
         else
             total_time = total_time + tau;
             current_position = current_position + rand_jump(beta);
-            t(n+1) = total_time;
-            x(n+1) = current_position;
-            n = n + 1;
+            t(n) = total_time;
+            x(n) = current_position;
         end
     end
     
