@@ -98,25 +98,25 @@ if __name__ == "__main__":
     M = [[1/3, 1/3, 1/3],
          [1/4, 1/2, 1/4],
          [1/6, 1/3, 1/2]]
-    a = [0.5, 0.3, 0.7]
-    m = FCP(100, a, M, init_state=init)
-    t, x = m.get()
+    # a = [0.5, 0.3, 0.7]
+    # m = FCP(100, a, M, init_state=init)
+    # t, x = m.get()
+    # fig = plt.figure()
+    # plt.step(t,x,where="post")
+    # plt.xlabel("t")
+    # plt.ylabel("x")
+    # fig.savefig("../figures/fcp.png")
+    v = [1, 3, 5]
+    a = [0.7, 1, 1.6]
+    # M = [[0.3, 0.5, 0.2],
+    #      [0.5, 0.1, 0.4],
+    #      [0.2, 0.5, 0.3]]
+    # b = [0.5, 0.43, 0.6]
+    model = LW(100, a, v, M, init_state=init)
+    t,x = model.get()
     fig = plt.figure()
-    plt.step(t,x,where="post")
+    plt.plot(t, x)
     plt.xlabel("t")
     plt.ylabel("x")
-    fig.savefig("../figures/fcp.png")
-#     v = [1, 3, 5]
-#     a = [0.7, 1, 1.6]
-#     # M = [[0.3, 0.5, 0.2],
-#     #      [0.5, 0.1, 0.4],
-#     #      [0.2, 0.5, 0.3]]
-#     # b = [0.5, 0.43, 0.6]
-#     model = LW(100, a, v, M, init_state=init)
-#     t,x = model.get()
-#     fig = plt.figure()
-#     plt.plot(t, x)
-#     plt.xlabel("t")
-#     plt.ylabel("x")
-#     fig.savefig("../figures/mullw.eps")
-#     # plt.show()
+    fig.savefig("../figures/mullw.png")
+    # plt.show()
