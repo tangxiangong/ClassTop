@@ -66,11 +66,11 @@ class AlternatingProcess(Trajectory):
                 current_position = self._x[-1]
 
 
-if __name__ == "__main__":
-    m = AlternatingProcess(100, 1.7, 1.3)
-    t, x = m.get()
-    fig = plt.figure()
-    plt.plot(t, x)
-    plt.xlabel("t")
-    plt.ylabel("x")
-    fig.savefig("alter.eps")
+# if __name__ == "__main__":
+#     m = AlternatingProcess(100, 1.7, 1.3)
+#     # t, x = m.get()
+#     fig = plt.figure()
+#     plt.plot(t, x)
+#     plt.xlabel("t")
+#     plt.ylabel("x")
+#     fig.savefig("alter.eps")
