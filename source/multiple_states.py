@@ -46,7 +46,7 @@ class FCP(Trajectory):
 
     def plot(self):
         plt.figure()
-        plt.step(self._t, self._x)
+        plt.step(self._t, self._x, where="post")
         plt.show()
 
 
@@ -93,11 +93,19 @@ class LW(Trajectory):
                 current_state = next_state
 
 
-# if __name__ == "__main__":
-#     init = [1/3, 1/3, 1/3]
-#     M = [[1/3, 1/3, 1/3],
-#          [1/4, 1/2, 1/4],
-#          [1/6, 1/3, 1/2]]
+if __name__ == "__main__":
+    init = [1/3, 1/3, 1/3]
+    M = [[1/3, 1/3, 1/3],
+         [1/4, 1/2, 1/4],
+         [1/6, 1/3, 1/2]]
+    a = [0.5, 0.3, 0.7]
+    m = FCP(100, a, M, init_state=init)
+    t, x = m.get()
+    fig = plt.figure()
+    plt.step(t,x,where="post")
+    plt.xlabel("t")
+    plt.ylabel("x")
+    fig.savefig("../figures/fcp.png")
 #     v = [1, 3, 5]
 #     a = [0.7, 1, 1.6]
 #     # M = [[0.3, 0.5, 0.2],

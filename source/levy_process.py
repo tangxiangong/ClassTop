@@ -66,11 +66,11 @@ class PoissonProcess(Trajectory):
 
     def plot(self):
         plt.figure()
-        plt.step(self._t, self._x)
+        plt.step(self._t, self._x, where="post")
         plt.show()
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
 #     bm = StableProcess(100, 2, "symmetric")
 #     t1, x1 = bm.get()
 #     fig1 = plt.figure(1)
@@ -95,10 +95,10 @@ class PoissonProcess(Trajectory):
 #     plt.ylabel("S")
 #     fig3.savefig("../figures/subordinator.png")
 #
-#     sp = PoissonProcess(100, 1)
-#     t, x = sp.get()
-#     fig = plt.figure()
-#     plt.step(t, x)
-#     plt.xlabel("t")
-#     plt.ylabel("N")
-#     fig.savefig("../figures/poisson.png")
+    sp = PoissonProcess(100, 1)
+    t, x = sp.get()
+    fig = plt.figure()
+    plt.step(t, x, where="post")
+    plt.xlabel("t")
+    plt.ylabel("N")
+    fig.savefig("../figures/poisson.png")

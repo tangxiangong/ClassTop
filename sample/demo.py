@@ -3,12 +3,11 @@
 # @Time : 2021/11/30 14:29
 # import sys
 # sys.path.append("..")
-from source.CTRW import CTRW
-from source.trajectory import Trajectory
+import numpy as np
 import matplotlib.pyplot as plt
 
-model = CTRW(100, 0.8, 1.5)
-t, x = model.get()
-fig = plt.figure()
-plt.step(t, x)
-fig.savefig("../figure/ctrw.eps")
+t = np.array([0, 1, 2, 3, 4])
+x = np.array([0, 1, 2, 3, 3])
+plt.step(t, x, where="post")
+
+plt.show()
