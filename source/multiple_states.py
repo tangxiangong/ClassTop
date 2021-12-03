@@ -83,7 +83,7 @@ class LW(Trajectory):
                 d = -1
             else:
                 d = 1
-            if total_time + tau > self._T:
+            if total_time + tau >= self._T:
                 temp_t = self._T - total_time
                 current_position += d*v0*temp_t
                 self._t = np.append(self._t, self._T)
