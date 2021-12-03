@@ -30,6 +30,7 @@ class FCP(Trajectory):
         self._t = np.zeros(1)
         self._x = np.array([self._x0])
         total_time = 0
+        current_position = self._x0
         n = 1
         init = n_rand(self._I)
         current_state = init
@@ -37,16 +38,17 @@ class FCP(Trajectory):
             tau = waiting_time(self._alpha[current_state])
             if total_time + tau > self._T:
                 self._t = np.append(self._t, self._T)
-                self._x = np.append(self._x, self._x[-1])
+                self._x = np.append(self._x, current_position)
                 self._n = n + 1
                 break
             else:
+                xi = random.normal()
                 total_time += tau
+                current_position += xi
                 self._t = np.append(self._t, total_time)
+                self._x = np.append(self._x, current_position)
                 next_state = n_rand(self._M[current_state])
                 current_state = next_state
-                xi = random.normal()
-                self._x = np.append(self._x, self._x[-1] + xi)
                 n += 1
 
     def plot(self):
@@ -70,6 +72,7 @@ class LW(Trajectory):
         self._t = np.zeros(1)
         self._x = np.array([self._x0])
         total_time = 0
+        current_position = self._x0
         n = 1
         init = n_rand(self._I)
         current_state = init
@@ -82,14 +85,16 @@ class LW(Trajectory):
                 d = 1
             if total_time + tau > self._T:
                 temp_t = self._T - total_time
+                current_position += d*v0*temp_t
                 self._t = np.append(self._t, self._T)
-                self._x = np.append(self._x, self._x[-1]+d*v0*temp_t)
+                self._x = np.append(self._x, current_position)
                 self._n = n + 1
                 break
             else:
                 total_time += tau
+                current_position += d*v0*tau
                 self._t = np.append(self._t, total_time)
-                self._x = np.append(self._x, self._x[-1] + d * v0 * tau)
+                self._x = np.append(self._x, current_position)
                 n += 1
                 next_state = n_rand(self._M[current_state])
                 current_state = next_state
@@ -117,5 +122,5 @@ if __name__ == "__main__":
     plt.plot(t, x)
     plt.xlabel("t")
     plt.ylabel("x")
-    fig.savefig("fcp.eps")
+    # fig.savefig("fcp.eps")
     # plt.show()

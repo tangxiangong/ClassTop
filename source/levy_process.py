@@ -48,18 +48,20 @@ class PoissonProcess(Trajectory):
         self._t = np.zeros(1)
         self._x = np.array([0])
         total_time = 0
+        current_position = 0
         n = 1
         while True:
             tau = random.exponential(1/self._lambda)
             if total_time + tau > self._T:
                 self._t = np.append(self._t, self._T)
-                self._x = np.append(self._x, self._x[-1])
+                self._x = np.append(self._x, current_position)
                 self._n = n + 1
                 break
             else:
                 total_time += tau
+                current_position += 1
                 self._t = np.append(self._t, total_time)
-                self._x = np.append(self._x, self._x[-1] + 1)
+                self._x = np.append(self._x, current_position)
                 n += 1
 
     def plot(self):
@@ -76,4 +78,4 @@ if __name__ == "__main__":
     plt.step(t, x)
     plt.xlabel("t")
     plt.ylabel("N")
-    fig.savefig("poisson.eps")
+    # fig.savefig("poisson.eps")
