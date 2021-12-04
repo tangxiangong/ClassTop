@@ -28,15 +28,15 @@ VERSION = '0.1.0'
 
 setup(
     url="https://github.com/tangxiangong/ClassTop/",
-    name='anomalous',  # package name
+    name='anomalous-diffusion',  # package name
     version=VERSION,  # package version
     description='Anomalous diffusion simulation',  # package description
     long_description= LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     classifiers=classifiers,
     keywords=["anomalous diffusion", "stochastic process"],
-    author="",
-    author_email="",
+    author="tang xiangong",
+    author_email="tangxg16@gmail.com",
     python_requires=">=3.6",
     install_requires=[
         "numpy >= 1.17",

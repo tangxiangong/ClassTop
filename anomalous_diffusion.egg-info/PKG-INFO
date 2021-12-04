@@ -1,10 +1,10 @@
 Metadata-Version: 2.1
-Name: anomalous
+Name: anomalous-diffusion
 Version: 0.1.0
 Summary: Anomalous diffusion simulation
 Home-page: https://github.com/tangxiangong/ClassTop/
-Author: 
-Author-email: 
+Author: tang xiangong
+Author-email: tangxg16@gmail.com
 License: UNKNOWN
 Keywords: anomalous diffusion,stochastic process
 Platform: UNKNOWN
