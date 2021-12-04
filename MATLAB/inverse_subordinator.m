@@ -1,4 +1,4 @@
-function varargout = inverse_subordinator(alpha, T, tau)
+function varargout = inverse_subordinator(T, alpha, tau)
     if nargin==2
         tau=1e-2;
     end
