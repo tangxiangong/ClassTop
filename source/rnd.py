@@ -5,7 +5,7 @@ import numpy as np
 from numpy import random
 
 
-def n_rand(p):
+def n_rand(p, v=None):
     if type(p) is not np.ndarray:
         p = np.array(p)
     assert sum(p) == 1
